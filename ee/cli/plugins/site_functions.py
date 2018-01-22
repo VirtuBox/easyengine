@@ -1385,6 +1385,7 @@ def setupLetsEncrypt(self, ee_domain_name):
                                       .format(ee_domain_name),
                                       encoding='utf-8', mode='w')
             sslconf.write("listen 443 ssl http2;\n"
+                          listen [::]:443 ssl http2;\n"
                                      "ssl on;\n"
                                      "ssl_certificate     /etc/letsencrypt/live/{0}/fullchain.pem;\n"
                                      "ssl_certificate_key     /etc/letsencrypt/live/{0}/privkey.pem;\n"
@@ -1466,6 +1467,7 @@ def httpsRedirect(self,ee_domain_name,redirect=True):
                                       encoding='utf-8', mode='w')
                 sslconf.write("server {\n"
                                      "\tlisten 80;\n" +
+                                     "\tlisten [::]:80;\n" +
                                      "\tserver_name www.{0} {0};\n".format(ee_domain_name) +
                                      "\treturn 301 https://{0}".format(ee_domain_name)+"$request_uri;\n}" )
                 sslconf.close()
