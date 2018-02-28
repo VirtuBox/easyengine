@@ -1353,7 +1353,7 @@ def setupLetsEncrypt(self, ee_domain_name):
                                       .format(ee_domain_name),
                                       encoding='utf-8', mode='w')
             sslconf.write("listen 443 ssl http2;\n"
-                          listen [::]:443 ssl http2;\n"
+                          "listen [::]:443 ssl http2;\n"
                                      "ssl on;\n"
                                      "ssl_certificate     /etc/letsencrypt/live/{0}/fullchain.pem;\n"
                                      "ssl_certificate_key     /etc/letsencrypt/live/{0}/privkey.pem;\n"

@@ -14,16 +14,16 @@ location = /robots.txt {
   log_not_found off;
 }
 # Cache static files
-location ~* \.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf|swf)$ {
+location ~* \.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|css|rss|atom|js|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf|swf|webp)$ {
   add_header "Access-Control-Allow-Origin" "*";
   access_log off;
   log_not_found off;
-  expires max;
+  expires 30d;
 }
 # Security settings for better privacy
-# Deny hidden files
-location ~ /\.well-known {
-  allow all;
+# Set acme-challenge directory
+location /.well-known/acme-challenge/ {
+    alias /var/www/html/.well-known/acme-challenge/;
 }
 location ~ /\. {
   deny all;

@@ -64,6 +64,8 @@ class EEStackController(CementBaseController):
                 dict(help='Install PHP stack', action='store_true')),
             (['--php7'],
                 dict(help='Install PHP 7.0 stack', action='store_true')),
+            (['--php71'],
+                dict(help='Install PHP 7.1 stack', action='store_true')),
             (['--mysql'],
                 dict(help='Install MySQL stack', action='store_true')),
             (['--hhvm'],

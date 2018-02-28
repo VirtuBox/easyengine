@@ -123,6 +123,10 @@ class EEVariables():
                           "php7.0-mcrypt", "php7.0-readline", "php7.0-common", "php7.0-recode",
                           "php7.0-cli", "php7.0-mbstring",
                          "php7.0-bcmath", "php7.0-mysql", "php7.0-opcache", "php7.0-zip", "php7.0-xml", "php7.0-soap"]
+            ee_php7_1 = ["php7.1-fpm", "php7.1-curl", "php7.1-gd", "php7.1-imap",
+                          "php7.1-mcrypt", "php7.1-readline", "php7.1-common", "php7.1-recode",
+                          "php7.1-cli", "php7.1-mbstring",
+                         "php7.1-bcmath", "php7.1-mysql", "php7.1-opcache", "php7.1-zip", "php7.1-xml", "php7.1-soap"]
             ee_php_extra = ["php-memcached", "php-imagick", "php-memcache", "memcached",
                             "graphviz", "php-pear", "php-xdebug", "php-msgpack", "php-redis"]
     elif ee_platform_distro == 'debian':
@@ -153,12 +157,12 @@ class EEVariables():
 
     # MySQL repo and packages
     if ee_platform_distro == 'ubuntu':
-        ee_mysql_repo = ("deb http://sfo1.mirrors.digitalocean.com/mariadb/repo/"
-                         "10.1/ubuntu {codename} main"
+        ee_mysql_repo = ("deb [arch=amd64,i386] http://mariadb.mirrors.ovh.net/MariaDB/repo/"
+                         "10.2/ubuntu {codename} main"
                          .format(codename=ee_platform_codename))
     elif ee_platform_distro == 'debian':
-        ee_mysql_repo = ("deb http://sfo1.mirrors.digitalocean.com/mariadb/repo/"
-                         "10.1/debian {codename} main"
+        ee_mysql_repo = ("deb [arch=amd64,i386] http://mariadb.mirrors.ovh.net/MariaDB/repo/"
+                         "10.2/debian {codename} main"
                          .format(codename=ee_platform_codename))
 
     ee_mysql = ["mariadb-server", "percona-toolkit"]
