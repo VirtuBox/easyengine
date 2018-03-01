@@ -63,7 +63,7 @@ if [ "$ee_linux_distro" != "Ubuntu" ] && [ "$ee_linux_distro" != "Debian" ]; the
 fi
 
 # EasyEngine (ee) only support all Ubuntu/Debian distro except the distro reached EOL
-lsb_release -d | egrep -e "12.04|14.04|16.04|wheezy|jessie" &>> /dev/null
+lsb_release -d | egrep -e "12.04|14.04|16.04|wheezy|jessie|stretch" &>> /dev/null
 if [ "$?" -ne "0" ]; then
     ee_lib_echo_fail "EasyEngine (ee) only support Ubuntu 12.04/14.04/16.04 LTS and Debian 7.x/8.x"
     exit 100
@@ -89,8 +89,10 @@ function ee_install_dep()
 {
     if [ "$ee_linux_distro" == "Ubuntu" ]; then
         apt-get -y install gcc curl gzip python3 python3-apt python3-setuptools python3-dev sqlite3 git tar python-software-properties software-properties-common || ee_lib_error "Unable to install pre depedencies, exit status " 1
-    elif [ "$ee_linux_distro" == "Debian" ]; then
+    elif [ "$ee_linux_distro" == "jessie" ]; then
         apt-get -y install gcc curl gzip python3 python3-apt python3-setuptools python3-dev sqlite3 git tar python-software-properties || ee_lib_error "Unable to pre depedencies, exit status " 1
+	elif [ "$ee_linux_distro" == "stretch" ]; then
+		apt-get -y install gcc curl gzip python3 python3-apt python3-setuptools python3-dev sqlite3 git tar software-properties-common || ee_lib_error "Unable to pre depedencies, exit status " 1
     fi
 
     # Generating Locale
@@ -276,7 +278,7 @@ function ee_install()
         ee_branch=master
     fi
 
-    git clone -b $ee_branch https://github.com/EasyEngine/easyengine.git /tmp/easyengine --quiet > /dev/null \
+    git clone -b $ee_branch https://github.com/VirtuBox/easyengine.git /tmp/easyengine --quiet > /dev/null \
     || ee_lib_error "Unable to clone EasyEngine, exit status" $?
 
     cd /tmp/easyengine
